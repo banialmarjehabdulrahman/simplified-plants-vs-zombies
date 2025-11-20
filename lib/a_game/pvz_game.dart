@@ -1,46 +1,45 @@
-import 'dart:ui';
-
 import 'package:flame/camera.dart';
 import 'package:flame/components.dart';
+import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 
-class PvzGame extends FlameGame {
+import '../b_components/tile.dart';
+import '../e_core/game_layout.dart';
+import '../e_core/grid_logic.dart';
+
+/// Main Flame game for our simplified Plants vs Zombies.
+///
+/// Uses the new input API via [TapCallbacks] instead of the deprecated
+/// [TapDetector] mixin.
+class PvzGame extends FlameGame with TapCallbacks {
   PvzGame();
+
+  /// 2D list holding all tiles so we can find them by [row][col].
+  late final List<List<Tile>> tiles;
 
   @override
   Future<void> onLoad() async {
     await super.onLoad();
 
-    camera.viewport = FixedResolutionViewport(resolution: Vector2(800, 600));
+    // 1) Configure camera & world size.
+    GameLayout.setupCamera(this);
 
-    add(
-      TestBox()
-        ..position = Vector2(100, 280)
-        ..size = Vector2(50, 50),
+    // 2) Tell Flame where our images live.
+    images.prefix = 'assets/images/';
+
+    // 3) Load grass tiles.
+    final lightTileSprite = await loadSprite(
+      'green_tiles/tile_light_green.png',
     );
-  }
-}
+    final darkTileSprite = await loadSprite('green_tiles/tile_dark_green.png');
 
-class TestBox extends PositionComponent {
-  TestBox();
-
-  double speed = 150;
-
-  @override
-  void render(Canvas canvas) {
-    final rect = size.toRect();
-    final paint = Paint()..color = const Color(0xFF4CAF50);
-    canvas.drawRect(rect, paint);
+    // 4) Build the grid (extension method).
+    createGrid(lightTileSprite, darkTileSprite);
   }
 
+  /// Delegates tap handling to the grid logic extension.
   @override
-  void update(double dt) {
-    super.update(dt);
-
-    x += speed * dt;
-
-    if (x > 800) {
-      x = -size.x;
-    }
+  void onTapDown(TapDownEvent event) {
+    handleTapDown(event);
   }
 }
