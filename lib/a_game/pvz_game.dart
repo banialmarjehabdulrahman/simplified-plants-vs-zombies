@@ -22,7 +22,6 @@ import '../e_core/behaviors/sun_production.dart';
 import '../e_core/behaviors/plant_shooting.dart';
 import '../e_core/behaviors/zombie_attack.dart';
 import '../e_core/pooling/projectile_pool.dart';
-import '../e_core/pooling/projectile_pool.dart';
 import '../e_core/pooling/zombie_pool.dart';
 
 /// Main Flame game for our simplified Plants vs Zombies.

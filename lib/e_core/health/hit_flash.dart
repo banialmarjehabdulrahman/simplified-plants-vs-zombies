@@ -1,4 +1,3 @@
-import 'dart:math' show sin;
 import 'package:flutter/material.dart';
 
 /// Handles a brief "hit flash" effect (red/yellow flicker) after taking damage.
