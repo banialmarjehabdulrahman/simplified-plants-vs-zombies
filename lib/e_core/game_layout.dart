@@ -23,6 +23,8 @@ class GameLayout {
   /// Logical world height: grid + top + bottom margins.
   static const double worldHeight = rows * tileSize + 2 * verticalMargin;
 
+  static get gridTop => null;
+
   /// Configures the camera viewport for our game.
   static void setupCamera(PvzGame game) {
     game.camera.viewport = FixedResolutionViewport(

@@ -14,7 +14,7 @@ class PlantBar extends PositionComponent with HasGameRef<PvzGame> {
   PlantBar({required this.worldWidth, required this.worldHeight}) {
     const bottomMargin = 10.0;
     const sideMarginLeft = 5.0;
-    const sideMarginRight = 1360; // extra big margin on the right
+    const sideMarginRight = 1350; // extra big margin on the right
 
     size = Vector2(worldWidth - sideMarginLeft - sideMarginRight, _barHeight);
     position = Vector2(sideMarginLeft, worldHeight - _barHeight - bottomMargin);
