@@ -10,11 +10,8 @@ class Tile extends SpriteComponent {
     required this.gridY,
   });
 
-  /// Column index on the grid.
   final int gridX;
-
-  /// Row index on the grid.
   final int gridY;
 
-  bool hasPlant = false;
+  bool hasPlant = false; // <--- add this if not already there
 }

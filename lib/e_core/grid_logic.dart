@@ -4,7 +4,11 @@ import 'package:flame/events.dart';
 
 import '../a_game/pvz_game.dart';
 import '../b_components/tile.dart';
-import 'game_layout.dart';
+import '../b_components/plant.dart';
+import '../d_models/plant_type.dart';
+import '../e_core/game_layout.dart';
+import '../e_core/plant_state.dart';
+import '../e_core/plant_assets.dart';
 
 /// All grid-related logic for [PvzGame] is grouped here as an extension.
 /// Keeps PvzGame itself smaller and easier to read.
@@ -43,19 +47,13 @@ extension GridLogic on PvzGame {
     }
   }
 
-  /// Handles tap/clicks on the game and figures out which tile was tapped.
   void handleTapDown(TapDownEvent event) {
-    // In the root game, localPosition is in world coordinates.
     final worldPos = event.localPosition;
 
-    // World X maps directly to column index.
     final col = (worldPos.x / GameLayout.tileSize).floor();
-
-    // For Y we subtract the top margin, then divide by tile size.
     final row = ((worldPos.y - GameLayout.verticalMargin) / GameLayout.tileSize)
         .floor();
 
-    // Ignore taps outside the grid.
     final inX = col >= 0 && col < GameLayout.cols;
     final inY = row >= 0 && row < GameLayout.rows;
     if (!inX || !inY) {
@@ -64,15 +62,14 @@ extension GridLogic on PvzGame {
 
     final tile = tiles[row][col];
 
-    // Visual feedback so the user can see which tile was tapped.
     _highlightTile(tile);
+    _placePlantOnTile(tile);
 
-    // Debug log for now; later this will drive plant placement.
     // ignore: avoid_print
     print('Tapped tile row=$row col=$col');
   }
 
-  /// Adds a quick flash effect to the given [tile] using Flame's effects system.
+  /// Small flash effect so we see which tile we clicked.
   void _highlightTile(Tile tile) {
     tile.add(
       SequenceEffect([
@@ -80,5 +77,49 @@ extension GridLogic on PvzGame {
         OpacityEffect.to(1.0, EffectController(duration: 0.05)),
       ]),
     );
+  }
+
+  void _placePlantOnTile(Tile tile) {
+    // 1) Need a selected plant card.
+    final type = selectedPlantType;
+    if (type == null) {
+      // ignore: avoid_print
+      print('No plant selected.');
+      return;
+    }
+
+    // 2) Tile must be empty.
+    if (tile.hasPlant) {
+      // ignore: avoid_print
+      print('Tile already has a plant.');
+      return;
+    }
+
+    // 3) Check sun cost.
+    final def = PlantDefinition.byType(type);
+    if (!sunBank.canAfford(def.cost)) {
+      // ignore: avoid_print
+      print('Not enough sun for ${def.name}. Need ${def.cost}.');
+      return;
+    }
+
+    // 4) Get sprite for this plant.
+    final sprite = plantSprites[type];
+    if (sprite == null) {
+      // ignore: avoid_print
+      print('No sprite loaded for $type');
+      return;
+    }
+
+    // 5) Spend sun and place the plant.
+    sunBank.spend(def.cost);
+
+    final plant = Plant(type: type, tile: tile, sprite: sprite);
+
+    tile.hasPlant = true;
+    add(plant);
+
+    // Optional: deselect after placing one.
+    selectedPlantType = null;
   }
 }
