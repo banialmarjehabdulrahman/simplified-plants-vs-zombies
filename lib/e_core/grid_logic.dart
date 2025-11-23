@@ -7,8 +7,6 @@ import '../b_components/tile.dart';
 import '../b_components/plant.dart';
 import '../d_models/plant_type.dart';
 import '../e_core/game_layout.dart';
-import '../e_core/plant_state.dart';
-import '../e_core/plant_assets.dart';
 
 /// All grid-related logic for [PvzGame] is grouped here as an extension.
 /// Keeps PvzGame itself smaller and easier to read.
