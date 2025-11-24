@@ -5,6 +5,26 @@ A small tower-defense style game built with Flutter + Flame, created as a techni
 🕹 Live Demo (Web Build):
 👉 https://banialmarjehabdulrahman.github.io/simplified-plants-vs-zombies/
 
+
+🎮 Gameplay Summary
+
+Place plants on a 3×5 grid
+
+Plants automatically shoot projectiles at zombies
+
+Zombies walk horizontally toward the player’s house
+
+Lose a life when a zombie reaches the house
+
+Win by surviving the timer
+
+After win/lose:
+
+Restart with same difficulty
+
+Or increase difficulty & continue
+
+
 🎯 Overview
 
 This project is a simplified reinterpretation of Plants vs. Zombies, built to demonstrate:
@@ -38,6 +58,7 @@ Player lives & lose condition
 Post-game “Restart” & “Next Difficulty”
 
 Basic SFX and visual feedback
+
 
 🧱 Project Structure
 
@@ -75,6 +96,7 @@ lib/
     overlays/                   # Pause overlay, Game Over panel
     widgets/                    # Flutter widgets like PlantBar
   main.dart                     # Entry point: GameWidget + overlays
+
 
 🧩 Design Patterns Used
 ✔ State Pattern
@@ -121,20 +143,3 @@ Timer → Game Over
 
 UI flash effects, etc.
 
-🎮 Gameplay Summary
-
-Place plants on a 3×5 grid
-
-Plants automatically shoot projectiles at zombies
-
-Zombies walk horizontally toward the player’s house
-
-Lose a life when a zombie reaches the house
-
-Win by surviving the timer
-
-After win/lose:
-
-Restart with same difficulty
-
-Or increase difficulty & continue
