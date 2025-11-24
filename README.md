@@ -53,14 +53,12 @@ Basic sound effects & hit-flash feedback
 
 This project uses a clean, modular folder architecture separating:
 
-Core game systems
+- Core game systems  
+- Domain gameplay components  
+- Flutter UI overlays  
+- Reusable design patterns  
 
-Domain gameplay components
-
-Flutter UI overlays
-
-Reusable design patterns
-
+```text
 lib/
   core/
     audio/                      # SFX manager
@@ -90,3 +88,4 @@ lib/
     widgets/                    # Flutter widgets like PlantBar
 
   main.dart                     # Entry point: GameWidget + overlays
+
