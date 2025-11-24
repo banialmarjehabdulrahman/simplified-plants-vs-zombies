@@ -98,6 +98,7 @@ lib/
   main.dart                     # Entry point: GameWidget + overlays
 
 
+
 🧩 Design Patterns Used
 ✔ State Pattern
 
