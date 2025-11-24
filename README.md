@@ -88,7 +88,7 @@ lib/
     widgets/                    # Flutter widgets like PlantBar
 
   main.dart                     # Entry point: GameWidget + overlays
-
+```
 
 ## 🧩 Design Patterns Used
 ✔ State Pattern
