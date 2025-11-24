@@ -60,18 +60,16 @@ Post-game “Restart” & “Next Difficulty”
 Basic SFX and visual feedback
 
 
-🧱 Project Structure
+## 🧱 Project Structure
 
 This project uses a clean, modular folder architecture separating:
 
-Core game systems
+- Core game systems  
+- Domain gameplay components  
+- Flutter UI overlays  
+- Reusable design patterns  
 
-Domain gameplay components
-
-Flutter UI overlays
-
-Reusable design patterns
-
+```text
 lib/
   core/
     audio/                      # SFX manager
@@ -84,18 +82,24 @@ lib/
       state/                    # GameState (State pattern)
       object_pool/              # Pools for zombies/projectiles
       strategy/                 # (Reserved for movement strategies)
+
   domain/
     components/                 # Plant, Zombie, Projectile, Tile
     models/                     # PlantType, ZombieType
+
   game/
     pvz_game.dart               # Main Flame game class
+
   state_management/
     bloc/                       # BLoC for pause menu & overlays
+
   ui/
     hud/                        # Sun counter, lives, wave alerts
     overlays/                   # Pause overlay, Game Over panel
     widgets/                    # Flutter widgets like PlantBar
+
   main.dart                     # Entry point: GameWidget + overlays
+
 
 
 
