@@ -35,6 +35,7 @@ dependencies:
 
   flame: ^1.33.0 # Flame game engine
   flame_audio: ^2.11.11 # Sounds & music
+  audioplayers: ^6.5.1 # Used by AudioManager for BGM control
   flutter_bloc: ^9.1.1
   equatable: ^2.0.7
 
@@ -64,8 +65,12 @@ flutter:
 
   assets:
     - assets/images/plants/
+    - assets/images/plants/walnut_keyframes/ # <--- add / keep this line
     - assets/images/zombies/
     - assets/images/green_tiles/
+    - assets/images/ui/
+    - assets/audio/music/
+    - assets/audio/sfx/
 
   # To add assets to your application, add an assets section, like this:
   # assets:
