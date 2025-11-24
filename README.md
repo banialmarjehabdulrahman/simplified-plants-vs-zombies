@@ -48,3 +48,45 @@ Player lives & lose condition
 “Restart” & “Next Difficulty” flow
 
 Basic sound effects & hit-flash feedback
+
+## 🧱 Project Structure
+
+This project uses a clean, modular folder architecture separating:
+
+Core game systems
+
+Domain gameplay components
+
+Flutter UI overlays
+
+Reusable design patterns
+
+lib/
+  core/
+    audio/                      # SFX manager
+    events/                     # EventBus (Observer pattern)
+    game/
+      config/                   # Grid layout, game constants
+      logic/                    # Spawners, wave controller, game over logic
+    health/                     # Health + damage system
+    patterns/
+      state/                    # GameState (State pattern)
+      object_pool/              # Pools for zombies/projectiles
+      strategy/                 # (Reserved for movement strategies)
+
+  domain/
+    components/                 # Plant, Zombie, Projectile, Tile
+    models/                     # PlantType, ZombieType
+
+  game/
+    pvz_game.dart               # Main Flame game class
+
+  state_management/
+    bloc/                       # BLoC for pause menu & overlays
+
+  ui/
+    hud/                        # Sun counter, lives, wave alerts
+    overlays/                   # Pause overlay, Game Over panel
+    widgets/                    # Flutter widgets like PlantBar
+
+  main.dart                     # Entry point: GameWidget + overlays
