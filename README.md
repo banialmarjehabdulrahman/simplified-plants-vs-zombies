@@ -1,3 +1,10 @@
+## 🌱 Simplified Plants vs Zombies
+
+A small tower-defense style game built with Flutter + Flame, created as a technical game challenge.
+
+🕹 Live Demo (Web Build):
+👉 https://banialmarjehabdulrahman.github.io/simplified-plants-vs-zombies/
+
 ## 🎮 Gameplay Summary
 
 Place plants on a 3×5 grid
